@@ -2,8 +2,6 @@
 
 蓝灵是面向光学设计与光场调控的 Windows AI 工作台。
 
-本仓库仅用于发布产品官网和下载资源，不公开应用程序源代码。
-
 ## 下载
 
 - [下载 Windows 在线安装包](https://github.com/Alice-P197/BlueSpirit/releases/latest/download/BlueSpirit-Setup.exe)
