@@ -5,6 +5,7 @@
 ## 下载
 
 - [下载 Windows 在线安装包](https://github.com/Alice-P197/BlueSpirit/releases/latest/download/BlueSpirit-Setup.exe)
+- [查看安装说明](https://alice-p197.github.io/BlueSpirit/install.html)
 - [查看全部发行版本](https://github.com/Alice-P197/BlueSpirit/releases)
 - [访问产品官网](https://alice-p197.github.io/BlueSpirit/)
 

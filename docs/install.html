@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="蓝灵 BlueSpirit 安装说明：Windows 在线安装版下载校验、安装步骤、目录结构、数据位置、卸载方式与常见网络问题排查。">
+  <meta name="theme-color" content="#2f6bff">
+  <title>安装说明 · 蓝灵 BlueSpirit</title>
+  <link rel="icon" href="images/bluespirit.ico">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .guide-hero{padding:132px 0 62px;background:radial-gradient(circle at 88% 12%,#edf4ff 0,transparent 38%),linear-gradient(180deg,#fbfdff 0,#fff 82%)}
+    .guide-hero h1{font-size:42px;margin-bottom:16px}
+    .guide-hero p{color:var(--muted);font-size:16px;line-height:1.9;max-width:660px;margin-bottom:26px}
+    .guide-badges{display:flex;gap:10px;flex-wrap:wrap}
+    .guide-badges span{background:#fff;border:1px solid var(--border);border-radius:99px;padding:7px 14px;font-size:12px;color:#52657c}
+    .guide-layout{display:grid;grid-template-columns:220px 1fr;gap:52px;align-items:start}
+    .guide-toc{position:sticky;top:100px;border:1px solid var(--border);border-radius:14px;padding:18px 20px;background:#fff}
+    .guide-toc strong{display:block;font-size:12px;letter-spacing:.12em;color:#8a97ad;margin-bottom:12px}
+    .guide-toc a{display:block;font-size:13px;color:#52657c;padding:6px 0;transition:.2s}
+    .guide-toc a:hover{color:var(--primary)}
+    .guide-step{margin-bottom:54px;scroll-margin-top:96px}
+    .guide-step h2{font-size:27px;margin-bottom:18px}
+    .guide-step h2 span{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:9px;background:#eaf1ff;color:var(--primary);font-size:14px;margin-right:12px;vertical-align:3px}
+    .guide-step>p{color:var(--muted);font-size:15px;line-height:1.95;margin-bottom:20px}
+    .guide-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px 26px;margin-bottom:18px}
+    .guide-card h3{font-size:16px;margin-bottom:12px}
+    .guide-card p{font-size:14px;color:var(--muted);line-height:1.9;margin-bottom:0}
+    .guide-card p+p{margin-top:10px}
+    .guide-list{margin:0;padding-left:20px;color:var(--muted);font-size:14px;line-height:2}
+    .guide-list li{margin-bottom:8px}
+    .guide-list strong{color:var(--text)}
+    .guide-code{background:#0f2740;color:#d6e6f5;border-radius:12px;padding:16px 18px;font-family:Consolas,monospace;font-size:12.5px;line-height:1.85;overflow-x:auto;white-space:pre;margin:0 0 18px}
+    .guide-code .cm{color:#7fa8cc}
+    .guide-table{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:18px}
+    .guide-table th,.guide-table td{border:1px solid var(--border);padding:11px 14px;text-align:left;vertical-align:top}
+    .guide-table th{background:var(--tinted);font-weight:650;color:#27415d;white-space:nowrap}
+    .guide-table td code{font-family:Consolas,monospace;font-size:12px;color:#2a4a6d;word-break:break-all}
+    .guide-note{border-left:3px solid var(--primary);background:#f7faff;border-radius:0 12px 12px 0;padding:16px 20px;margin-bottom:18px;font-size:14px;color:#3d5a7d;line-height:1.9}
+    .guide-note.warn{border-left-color:#f59e0b;background:#fffbf2;color:#7a5a17}
+    .guide-hash{background:var(--tinted);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:18px}
+    .guide-hash span{display:block;font-size:11px;color:#7a8999;margin-bottom:8px}
+    .guide-hash code{display:block;font-family:Consolas,monospace;font-size:12px;color:#27415d;word-break:break-all;user-select:all}
+    .guide-hash button{margin-top:12px;border:1px solid var(--border);border-radius:8px;background:#fff;color:#35507a;font-size:11px;padding:7px 12px;cursor:pointer}
+    .guide-hash button:hover{border-color:#b7cbe3;color:var(--primary)}
+    .guide-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .guide-next{background:linear-gradient(125deg,#102b44,#173f66);border-radius:18px;color:#fff;padding:30px 32px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+    .guide-next h3{font-size:19px;margin-bottom:6px}
+    .guide-next p{color:#b9cbe0;font-size:13px;margin-bottom:0}
+    @media(max-width:900px){.guide-layout{grid-template-columns:1fr;gap:26px}.guide-toc{position:static}.guide-hero{padding-top:118px}.guide-hero h1{font-size:32px}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳至主要内容</a>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="蓝灵首页">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="brand-name">蓝灵 <small>BLUE SPIRIT</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="打开导航菜单" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks" aria-label="主导航">
+        <a href="index.html#features">产品能力</a>
+        <a href="index.html#optics">光学设计</a>
+        <a href="index.html#field">光场调控</a>
+        <a href="install.html">安装说明</a>
+        <a href="https://github.com/Alice-P197/BlueSpirit" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <a class="button button-small button-primary nav-download" href="https://github.com/Alice-P197/BlueSpirit/releases/latest/download/BlueSpirit-Setup.exe">下载 Windows 版</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="guide-hero">
+      <div class="container">
+        <div class="eyebrow"><span class="status-dot"></span> BLUE SPIRIT 1.3.1 · WINDOWS</div>
+        <h1>安装说明</h1>
+        <p>蓝灵提供 Windows 在线安装版。安装器会在你的用户目录下配置一套完全独立的 Python 运行环境与光学计算引擎，然后自动完成部署，全程不改动系统 Python，也不需要管理员权限。</p>
+        <div class="guide-badges">
+          <span>Windows 10 / 11 64 位</span>
+          <span>安装过程需要联网</span>
+          <span>无需管理员权限</span>
+          <span>独立 Python 3.13.12</span>
+          <span>Optiland 0.6.1 光学引擎</span>
+        </div>
+        <div class="guide-actions">
+          <a class="button button-primary button-large" href="https://github.com/Alice-P197/BlueSpirit/releases/latest/download/BlueSpirit-Setup.exe">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg>
+            下载安装包
+          </a>
+          <a class="button button-secondary button-large" href="index.html#faq">常见问题</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container guide-layout">
+        <nav class="guide-toc" aria-label="目录">
+          <strong>目录</strong>
+          <a href="#download">一、下载与校验</a>
+          <a href="#install">二、执行安装</a>
+          <a href="#first-run">三、首次启动</a>
+          <a href="#layout">四、目录与数据</a>
+          <a href="#model">五、模型服务配置</a>
+          <a href="#uninstall">六、卸载</a>
+          <a href="#troubleshoot">七、常见问题</a>
+        </nav>
+
+        <div>
+          <section class="guide-step" id="download">
+            <h2><span>1</span>下载与校验</h2>
+            <p>从官网或 Release 页面下载在线安装包。安装包本身只包含蓝灵程序、界面资源与镜头库，因此体积很小。</p>
+            <div class="guide-card">
+              <h3>安装包信息</h3>
+              <table class="guide-table">
+                <tr><th>文件名</th><td><code>BlueSpirit-Setup.exe</code></td></tr>
+                <tr><th>文件大小</th><td>1,897,414 字节（1.81 MiB）</td></tr>
+                <tr><th>适用系统</th><td>Windows 10 / 11 64 位</td></tr>
+                <tr><th>安装权限</th><td>当前用户，无需管理员权限</td></tr>
+                <tr><th>下载直链</th><td><code>https://github.com/Alice-P197/BlueSpirit/releases/latest/download/BlueSpirit-Setup.exe</code></td></tr>
+              </table>
+            </div>
+            <div class="guide-hash">
+              <span>SHA256</span>
+              <code id="sha256">23B56F8C138C54844E5D4641DC148AC2E346B6971AE2D641FADC13757B2D9791</code>
+              <button class="copy-button" type="button" data-copy="23B56F8C138C54844E5D4641DC148AC2E346B6971AE2D641FADC13757B2D9791">复制校验值</button>
+            </div>
+            <p>下载后可在 PowerShell 中校验文件是否完整：</p>
+            <pre class="guide-code"><span class="cm"># 校验安装包完整性</span>
+Get-FileHash -Algorithm SHA256 .\BlueSpirit-Setup.exe</pre>
+            <p>输出的哈希值应与上方的 SHA256 完全一致。若不一致，说明下载未完成或文件被替换，请重新下载。</p>
+          </section>
+
+          <section class="guide-step" id="install">
+            <h2><span>2</span>执行安装</h2>
+            <p>双击 <code>BlueSpirit-Setup.exe</code> 启动安装向导，按提示完成即可。</p>
+            <div class="guide-card">
+              <h3>向导步骤</h3>
+              <ol class="guide-list">
+                <li><strong>欢迎页</strong>：确认安装器版本，点击下一步。</li>
+                <li><strong>选择安装目录</strong>：默认为 <code>%LOCALAPPDATA%\BlueSpirit</code>，可直接使用或改为其他目录。</li>
+                <li><strong>安装过程</strong>：安装器会依次完成程序文件释放、独立 Python 运行时配置、pip 准备，以及 PySide6、Optiland 0.6.1 与科学计算依赖的安装。这一步需要联网，耗时取决于网络状况。</li>
+                <li><strong>完成页</strong>：可勾选立即启动蓝灵，桌面与开始菜单会同时创建快捷方式。</li>
+              </ol>
+            </div>
+            <div class="guide-note">
+              安装器依赖下载具备自动重试与镜像回退：包索引优先使用清华镜像，失败后回退 PyPI；Python 运行时来自 python.org，失败后回退华为云镜像。安装结束前会执行完整运行库校验，只有在所有必需模块与依赖一致性检查通过后才会判定为安装成功。
+            </div>
+            <div class="guide-card">
+              <h3>静默安装（可选）</h3>
+              <p>在需要批量部署或脚本化安装时，可以使用 NSIS 静默参数，并指定安装目录：</p>
+              <pre class="guide-code" style="margin-bottom:12px">BlueSpirit-Setup.exe /S /D=C:\BlueSpirit</pre>
+              <p><code>/S</code> 表示静默安装，<code>/D=</code> 后紧跟目标目录且不带引号。目录必须以当前用户可写的路径开头。</p>
+            </div>
+          </section>
+
+          <section class="guide-step" id="first-run">
+            <h2><span>3</span>首次启动</h2>
+            <p>安装完成后可通过三种方式启动蓝灵：</p>
+            <ul class="guide-list">
+              <li>桌面上的<strong>「蓝灵 BlueSpirit」</strong>快捷方式。</li>
+              <li>开始菜单 <code>BlueSpirit</code> 分组中的<strong>「蓝灵 BlueSpirit」</strong>。</li>
+              <li>直接运行 <code>%LOCALAPPDATA%\BlueSpirit\BlueSpirit\runtime\python\pythonw.exe "%LOCALAPPDATA%\BlueSpirit\BlueSpirit\main.py"</code>。</li>
+            </ul>
+            <div class="guide-note">
+              首次启动会创建数据目录、镜头库索引与默认工作区，镜头库共 1,488 条定义会在打开镜头库时全部载入，其中已验证可用的条目直接恢复缓存，其余条目按需实例化。
+            </div>
+          </section>
+
+          <section class="guide-step" id="layout">
+            <h2><span>4</span>目录与数据</h2>
+            <p>蓝灵的程序文件、运行环境与用户数据分开放置，卸载程序不会影响用户数据。</p>
+            <div class="guide-card">
+              <h3>安装目录（默认）</h3>
+              <table class="guide-table">
+                <tr><th>路径</th><th>内容</th></tr>
+                <tr><td><code>%LOCALAPPDATA%\BlueSpirit\BlueSpirit\main.py</code></td><td>程序入口</td></tr>
+                <tr><td><code>%LOCALAPPDATA%\BlueSpirit\BlueSpirit\app\</code></td><td>界面、核心模块、光场调控与光学计算资源</td></tr>
+                <tr><td><code>%LOCALAPPDATA%\BlueSpirit\BlueSpirit\resources\</code></td><td>镜头资源与设计模板</td></tr>
+                <tr><td><code>%LOCALAPPDATA%\BlueSpirit\BlueSpirit\runtime\python\</code></td><td>独立 Python 3.13.12 运行环境（不占用系统 Python）</td></tr>
+                <tr><td><code>%LOCALAPPDATA%\BlueSpirit\Setup\install.log</code></td><td>安装日志</td></tr>
+                <tr><td><code>%LOCALAPPDATA%\BlueSpirit\Uninstall.exe</code></td><td>卸载程序</td></tr>
+              </table>
+              <p>安装完成后整体占用约 1.5 GiB，其中绝大多数来自 Qt 与科学计算依赖的独立运行环境。</p>
+            </div>
+            <div class="guide-card">
+              <h3>用户数据目录</h3>
+              <table class="guide-table">
+                <tr><th>路径</th><th>内容</th></tr>
+                <tr><td><code>%APPDATA%\BlueSpirit\</code></td><td>会话记录、报告、镜头库版本、设置与工作区文件</td></tr>
+              </table>
+              <p>如需将数据迁移到其他位置，可设置环境变量 <code>BLUESPIRIT_HOME</code> 指向目标目录。</p>
+            </div>
+          </section>
+
+          <section class="guide-step" id="model">
+            <h2><span>5</span>模型服务配置</h2>
+            <p>蓝灵不内置任何 API Key。使用 AI 对话与设计 Agent 时，需要在设置中添加一个 OpenAI 兼容的模型服务商。</p>
+            <div class="guide-card">
+              <h3>配置要点</h3>
+              <ul class="guide-list">
+                <li>进入<strong>设置 → AI 配置</strong>，左侧选择服务商，右侧填写名称、接口地址、API Key 与模型列表。</li>
+                <li>可添加任意数量的自定义服务商，并将常用模型设为默认。</li>
+                <li>未配置 API Key 时，界面、镜头设计分析与光场调控等本地计算功能仍可正常使用。</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="guide-step" id="uninstall">
+            <h2><span>6</span>卸载</h2>
+            <p>提供三种卸载入口，任选其一即可：</p>
+            <ul class="guide-list">
+              <li>开始菜单 <code>BlueSpirit</code> 分组中的<strong>「卸载蓝灵」</strong>。</li>
+              <li>运行 <code>%LOCALAPPDATA%\BlueSpirit\Uninstall.exe</code>。</li>
+              <li>Windows 设置 → 应用 → 已安装的应用 → <strong>蓝灵 BlueSpirit</strong> → 卸载。</li>
+            </ul>
+            <div class="guide-note warn">
+              卸载会移除程序文件、快捷方式与独立运行环境，但不会删除 <code>%APPDATA%\BlueSpirit</code> 中的任务、报告与镜头版本数据。如需彻底清理，可手动删除该目录。
+            </div>
+          </section>
+
+          <section class="guide-step" id="troubleshoot">
+            <h2><span>7</span>常见问题</h2>
+
+            <div class="guide-card">
+              <h3>安装过程中提示网络错误</h3>
+              <p>安装依赖下载失败时，安装器会自动重试并切换镜像。如果多次尝试仍失败，请检查是否可以访问 <code>python.org</code>、<code>bootstrap.pypa.io</code>、<code>pypi.tuna.tsinghua.edu.cn</code> 与 <code>pypi.org</code>。公司代理或安全软件拦截 HTTPS 也会导致下载中断，此时可在系统设置中放行上述站点后重新运行安装包。</p>
+            </div>
+
+            <div class="guide-card">
+              <h3>在哪里查看安装日志</h3>
+              <p>日志位于安装目录下的 <code>Setup\install.log</code>，其中记录了每一次下载、每一次镜像切换以及最终的校验结果。若你选择了自定义安装目录，日志同样位于该目录的 <code>Setup</code> 子目录中。</p>
+            </div>
+
+            <div class="guide-card">
+              <h3>安装中断后如何继续</h3>
+              <p>直接重新运行安装包即可。已下载的 Python 运行时缓存在临时目录的 <code>BlueSpirit-Downloads</code> 中，pip 也会复用本地缓存，重装时通常会明显更快。</p>
+            </div>
+
+            <div class="guide-card">
+              <h3>安装时被安全软件拦截</h3>
+              <p>安装包包含独立运行时的释放与依赖安装行为，部分安全软件会将其判定为可疑程序。请将安装包加入白名单后重新运行，或从官网重新下载最新版本。</p>
+            </div>
+
+            <div class="guide-card">
+              <h3>启动时没有反应或闪退</h3>
+              <p>可在命令提示符中运行入口脚本查看真实报错：</p>
+              <pre class="guide-code" style="margin-bottom:0">"%LOCALAPPDATA%\BlueSpirit\BlueSpirit\runtime\python\python.exe" "%LOCALAPPDATA%\BlueSpirit\BlueSpirit\main.py"</pre>
+            </div>
+
+            <div class="guide-card">
+              <h3>浏览器控制功能无法连接</h3>
+              <p>浏览器控制通过本机调试端口连接已启动的浏览器。若端口被占用，可在设置中调整浏览器端口后重试。</p>
+            </div>
+          </section>
+
+          <div class="guide-next">
+            <div>
+              <h3>安装完成后，开始你的第一次光学设计</h3>
+              <p>蓝灵提供镜头设计中心与独立的光场调控模块，两者都可由设计 Agent 直接调度。</p>
+            </div>
+            <a class="button button-white button-large" href="index.html#features">了解产品能力</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div><a class="brand footer-brand" href="index.html"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span class="brand-name">蓝灵 <small>BLUE SPIRIT</small></span></a><p>面向光学设计与光场调控的 AI 工作台。</p></div>
+      <div class="footer-links"><div><strong>产品</strong><a href="index.html#features">产品能力</a><a href="index.html#optics">光学设计</a><a href="index.html#field">光场调控</a></div><div><strong>资源</strong><a href="https://github.com/Alice-P197/BlueSpirit" target="_blank" rel="noopener">GitHub 仓库</a><a href="https://github.com/Alice-P197/BlueSpirit/releases/latest" target="_blank" rel="noopener">最新 Release</a><a href="index.html#faq">常见问题</a></div><div><strong>下载</strong><a href="install.html">安装说明</a><a href="https://github.com/Alice-P197/BlueSpirit/releases/latest/download/BlueSpirit-Setup.exe">Windows 安装包</a></div></div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 BlueSpirit. All rights reserved.</span><span>Designed for optical innovation.</span></div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
